@@ -47,7 +47,8 @@ $(PY) $(PIP):
 .PHONY: js
 js: static/js/bootstrap.min.css static/js/bootstrap.dark.css \
 	static/js/bootstrap.min.js static/js/jquery.min.js \
-	static/js/html5shiv.min.js static/js/respond.min.js
+	static/js/html5shiv.min.js static/js/respond.min.js \
+	static/js/socket.io.min.js
 
 JQUERY_VER = 3.6.0
 static/js/jquery.min.js:
@@ -69,6 +70,12 @@ static/js/html5shiv.min.js:
 	$(WGET) -O $@ https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js
 static/js/respond.min.js:
 	$(WGET) -O $@ https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js
+
+SOCKETIO_VER = 3.1.2
+static/js/socket.io.min.js: static/js/socket.io.min.js.map
+	$(WGET) -O $@ https://cdnjs.cloudflare.com/ajax/libs/socket.io/$(SOCKETIO_VER)/socket.io.min.js
+static/js/socket.io.min.js.map:
+	$(WGET) -O $@ https://cdnjs.cloudflare.com/ajax/libs/socket.io/$(SOCKETIO_VER)/socket.io.min.js.map
 
 # / <section:js>
 # / <section:install>

@@ -1,5 +1,6 @@
 
 import os,sys,re
+import datetime as dt
 
 class Object:
     def __init__(self,V):
@@ -49,6 +50,19 @@ class Env(Object): pass
 
 glob = Env('global')
 
+class IO(Object): pass
+
+class Time(IO):
+    def __init__(self,V=None):
+        if not V:
+            self.now = dt.datetime.now()
+            self.date = self.now.strftime('%Y-%m-%d')
+            self.time = self.now.strftime('%H:%M:%S')
+            V = f'{self.now}'
+        super().__init__(V)
+    def json(self):
+        return {"date":self.date,"time":self.time}
+
 class Meta(Object): pass
 
 meta = Meta('info') ; glob << meta
@@ -61,7 +75,7 @@ class Title(Meta):
     def html(self):
         return f'<i>{self.value}</i>'
 
-meta['TITLE'] = TITLE = Title('object/graph database + web platform')
+meta['TITLE'] = TITLE = Title('object graph database + web platform')
 
 class Author(Meta):
     def html(self):
@@ -86,18 +100,25 @@ class Url(Web):
 meta['GITHUB'] = Url('https://github.com/ponyatov/Z')
 
 import flask
+from flask_socketio import SocketIO
+
 
 class Engine(Web):
     def __init__(self):
         super().__init__('Flask')
         self.app = flask.Flask(self.value)
         self.route()
+        self.sio = SocketIO(self.app)
+        self.socket()
     def eval(self,env):
-        self.app.run(debug=True)
+        self.sio.run(self.app,debug=True)
     def route(self):
         @self.app.route('/')
         def index():
             return flask.render_template('index.html',glob=glob)
+    def socket(self):
+        @self.sio.on('connect')
+        def connect(): self.sio.emit('localtime',Time().json())
 
 if __name__ == '__main__':
     Engine().eval(glob)
