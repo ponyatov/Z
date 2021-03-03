@@ -13,13 +13,18 @@
         "sequence": [
             "workbench.action.files.saveAll",
             {"command": "workbench.action.terminal.sendSequence",
-                "args": {"text": "\u000D clear ; make all \u000D"}}
+                "args": {"text": "\u000D clear ; make test \u000D"}}
         ]
     },
 ],
 "files.watcherExclude": {
+    "**/__pycache__/**":true,
 },
 "files.exclude": {
+    "**/__pycache__/**":true,
+},
+"files.associations": {
+    "requirements.*": "config",
 },
 "editor.tabSize": 4,
 "editor.rulers": [80],

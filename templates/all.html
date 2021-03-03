@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>{{glob.head()}}</title>
+		<link rel="shortcut icon" href="/static/logo.png" type="image/png">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--[if lt IE 9]>
+			<script src="" integrity="sha512-UDJtJXfzfsiPPgnI5S1000FPLBHMhvzAMX15I+qG2E2OAzC9P1JzUwJOfnypXiOH7MRPaqzhPbBGDNNj7zBfoA==" crossorigin="anonymous"></script>
+			<script src="" integrity="sha512-qWVvreMuH9i0DrugcOtifxdtZVBBL0X75r9YweXsdCHtXUidlctw7NXg5KVP3ITPtqZ2S575A0wFkvgS2anqSA==" crossorigin="anonymous"></script>
+		<![endif]-->
+        <link rel="stylesheet" href="/static/js/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/static/js/bootstrap.dark.css"/>
+        <link href="/static/css.css" rel="stylesheet">
+		{% block head %}{% endblock %}
+    </head>
+    <body>
+		<div class="container-fluid">
+            <nav class="navbar">
+                <img id=logo class="nav-logo" src="/static/logo.png"/>
+                <span class="navbar-brand">{{glob.head()}}</span>
+            </nav>
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</html>
