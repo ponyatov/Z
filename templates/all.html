@@ -19,7 +19,13 @@
 		<div class="container-fluid">
             <nav class="navbar">
                 <img id=logo class="nav-logo" src="/static/logo.png"/>
-                <span class="navbar-brand">{{glob.head()}}</span>
+                <ul class="navbar-text">
+                    <li>{{glob['meta']['TITLE'].html()|safe}}</li>
+                    <li>(c) {{glob['meta']['AUTHOR'].html()|safe}}</li>
+                    <li>github: {{glob['meta']['GITHUB'].html()|safe}}</li>
+                </ul>
+                <span class="navbar-brand">{{glob['meta']['MODULE'].html()}}</span>
+                <pre id="localtime">date | time</pre>
             </nav>
             {% block body %}{% endblock %}
         </div>
