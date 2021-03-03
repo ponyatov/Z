@@ -98,6 +98,7 @@ class Url(Web):
         return f'<a href="{self.value}">{self.value}</a>'
 
 meta['GITHUB'] = Url('https://github.com/ponyatov/Z')
+meta['TRELLO'] = Url('https://trello.com/c/nnbbEz1T')
 
 import flask
 from flask_socketio import SocketIO
