@@ -3,7 +3,7 @@ function s(c,g)     { return "<span class="+c+">"+g+"</span>" }
 function u(rl)      { return "<a href="+rl+">"+rl+"</a>" }
 function e(mail)    { return "<a href=mailto:"+mail+">"+mail+"</a>" }
 
-metaLog = peg.generate(`
+grammar = peg.generate(`
 dump    = w:(class/gt/hash/cycle/slot/.)*
 
 email   = n:name a:"@" d:domain             {return e(n+a+d)}
@@ -21,5 +21,9 @@ eq      = w:" = "                           {return s('op',w)}
 `)
 
 $(
-    $('#dump').html(metaLog.parse($('#dump').text()))
+    $('.dump').each(
+        function(idx,item) {
+            $(this).html(
+                grammar.parse(
+                    $(this).text()))})
 )

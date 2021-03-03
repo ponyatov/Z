@@ -12,6 +12,7 @@
 		<![endif]-->
         <link rel="stylesheet" href="/static/js/bootstrap.min.css"/>
         <link rel="stylesheet" href="/static/js/bootstrap.dark.css"/>
+        <link href="/static/highlight.css" rel="stylesheet">
         <link href="/static/css.css" rel="stylesheet">
 		{% block head %}{% endblock %}
     </head>
@@ -24,7 +25,7 @@
                     <li>(c) {{glob['meta']['AUTHOR'].html()|safe}}</li>
                     <li>github: {{glob['meta']['GITHUB'].html()|safe}}</li>
                 </ul>
-                <span class="navbar-brand">{{glob['meta']['MODULE'].html()}}</span>
+                <span class="navbar-brand dump">{{env['meta']['MODULE'].html()}}</span>
                 <pre id="localtime">date | time</pre>
             </nav>
             {% block body %}{% endblock %}
@@ -34,4 +35,6 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/socket.io.min.js"></script>
     <script src="/static/socket.js"></script>
+    <script src="/static/js/peg.min.js"></script>
+    <script src="/static/highlight.js"></script>
 </html>

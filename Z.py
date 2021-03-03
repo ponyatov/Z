@@ -115,7 +115,7 @@ class Engine(Web):
     def route(self):
         @self.app.route('/')
         def index():
-            return flask.render_template('index.html',glob=glob)
+            return flask.render_template('index.html',glob=glob,env=glob)
     def socket(self):
         @self.sio.on('connect')
         def connect(): self.sio.emit('localtime',Time().json())

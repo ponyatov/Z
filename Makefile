@@ -48,7 +48,7 @@ $(PY) $(PIP):
 js: static/js/bootstrap.min.css static/js/bootstrap.dark.css \
 	static/js/bootstrap.min.js static/js/jquery.min.js \
 	static/js/html5shiv.min.js static/js/respond.min.js \
-	static/js/socket.io.min.js
+	static/js/socket.io.min.js static/js/peg.min.js
 
 JQUERY_VER = 3.6.0
 static/js/jquery.min.js:
@@ -76,6 +76,10 @@ static/js/socket.io.min.js: static/js/socket.io.min.js.map
 	$(WGET) -O $@ https://cdnjs.cloudflare.com/ajax/libs/socket.io/$(SOCKETIO_VER)/socket.io.min.js
 static/js/socket.io.min.js.map:
 	$(WGET) -O $@ https://cdnjs.cloudflare.com/ajax/libs/socket.io/$(SOCKETIO_VER)/socket.io.min.js.map
+
+PEGJS_VER = 0.10.0
+static/js/peg.min.js:
+	$(WGET) -O $@ https://github.com/pegjs/pegjs/releases/download/v$(PEGJS_VER)/peg-$(PEGJS_VER).min.js
 
 # / <section:js>
 # / <section:install>
