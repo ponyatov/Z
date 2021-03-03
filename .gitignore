@@ -4,3 +4,9 @@
 
 *.pyc
 /__pycache__/
+/bin/
+/lib/
+/lib64
+/share/
+/include/
+/pyvenv.cfg

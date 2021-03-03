@@ -19,9 +19,17 @@
 ],
 "files.watcherExclude": {
     "**/__pycache__/**":true,
+    "**/.pytest_cache/**":true,
+    "**/bin/**":true, "**/lib/**":true, "**/lib64/**":true,
+    "**/share/**":true, "**/include/**":true,
+    "**/pyvenv.cfg":true,
 },
 "files.exclude": {
     "**/__pycache__/**":true,
+    "**/.pytest_cache/**":true,
+    "**/bin/**":true, "**/lib/**":true, "**/lib64/**":true,
+    "**/share/**":true, "**/include/**":true,
+    "**/pyvenv.cfg":true,
 },
 "files.associations": {
     "requirements.*": "config",

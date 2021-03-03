@@ -8,10 +8,10 @@ TMP          = $(CWD)/tmp
 # / <section:dir>
 # \ <section:tool>
 WGET         = wget -c
-PY           = $(shell which python3)
-PIP          = $(shell which pip3)
-PEP          = $(shell which autopep8)
-PYT          = $(shell which pytest-3)
+PY           = bin/python3
+PIP          = bin/pip3
+PEP          = bin/autopep8
+PYT          = bin/pytest
 # / <section:tool>
 # \ <section:src>
 S += $(MODULE).py
@@ -27,13 +27,22 @@ test: $(PYT) test_$(S)
 # \ <section:install>
 .PHONY: install
 install: $(OS)_install js
+	$(MAKE) $(PIP)
 	$(MAKE) update
 .PHONY: update
 update: $(OS)_update
+	$(PIP) install -U    pip autopep8
+	$(PIP) install -U -r requirements.txt
 .PHONY: Linux_install Linux_update
 Linux_install Linux_update:
 	sudo apt update
 	sudo apt install -u `cat apt.txt`
+
+# \ <section:py>
+$(PY) $(PIP):
+	python3 -m venv .
+# / <section:py>
+
 # \ <section:js>
 .PHONY: js
 js: static/js/bootstrap.min.css static/js/bootstrap.dark.css \
